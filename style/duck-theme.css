@@ -1,0 +1,115 @@
+/* Duck Pond theme: board geometry and movement remain in main.css. */
+:root { --ink: #294e38; --muted: #5f7861; --pond: #7caa83; --cream: #fffcee; }
+html { min-height: 100%; background: #edf3cf; }
+body { margin: 0; padding: 42px 24px 30px; color: var(--ink); background: radial-gradient(ellipse at 8% 8%, #fff3b8 0, transparent 48%), radial-gradient(ellipse at 95% 85%, #cfdfab 0, transparent 48%), #edf3cf; font-family: "Clear Sans", "Helvetica Neue", sans-serif; min-height: 100vh; box-sizing: border-box; }
+body::before, body::after { content: ""; position: fixed; width: 240px; height: 110px; border: 1px solid #8fab7133; border-radius: 50%; z-index: 0; pointer-events: none; transform: rotate(-20deg); }
+body::before { left: -90px; top: 43%; box-shadow: 0 0 0 18px #92af7c0a, 0 0 0 40px #92af7c0a; }
+body::after { right: -100px; bottom: 12%; box-shadow: 0 0 0 18px #92af7c0a, 0 0 0 40px #92af7c0a; }
+.container { position: relative; z-index: 1; }
+.pond-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; }
+.pond-brand img { object-fit: contain; width: 56px; height: 49px; }
+.heading { display: flex; align-items: center; justify-content: space-between; }
+h1.title { float: none; font-size: 88px; line-height: 1.1; letter-spacing: -6px; }
+.title-dot { color: #e8ac30; }
+.scores-container { display: flex; gap: 8px; float: none; }
+.score-container, .best-container { background: #f8fae7; border: 1px solid #becda4; color: var(--ink); border-radius: 14px; min-width: 56px; padding: 18px 15px 10px; margin: 0; font-size: 25px; box-shadow: 0 3px 0 #b6c79633; }
+.score-container::after, .best-container::after { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; top: 8px; }
+.score-container .score-addition { color: var(--ink); }
+.above-game { display: flex; align-items: center; justify-content: space-between; margin-top: 21px; gap: 16px; }
+.game-intro { float: none; font-size: 17px; line-height: 1.6; }
+.restart-button, .game-container .game-message a { float: none; flex-shrink: 0; background: var(--ink); border: 0; border-radius: 12px; color: #fff9dc; font: 700 15px "Clear Sans", sans-serif; height: 45px; line-height: 45px; padding: 0 21px; cursor: pointer; box-shadow: 0 4px 0 #193b2930; transition: background .15s, transform .15s; }
+.restart-button span { margin-left: 10px; font-size: 20px; }
+.restart-button:hover, .game-container .game-message a:hover { background: #416b4d; transform: translateY(-1px); }
+.restart-button:focus-visible, a:focus-visible { outline: 3px solid #c2811f; outline-offset: 4px; }
+.pond-caption { display: flex; justify-content: space-between; align-items: center; margin: 30px 3px 10px; color: var(--muted); font-size: 9px; letter-spacing: 1.8px; font-weight: 700; }
+.game-container { margin-top: 0; background: var(--pond); border-radius: 22px; box-shadow: 0 9px 0 #5f8d6a, 0 16px 30px #3b633c18; }
+.grid-cell { background: #c4d9ac; border-radius: 13px; box-shadow: inset 0 2px 3px #527b4d12; }
+.tile .tile-inner { position: relative; border-radius: 13px; box-shadow: 0 3px 0 #345b3b15; color: var(--ink); font-size: 43px; line-height: 132px; }
+.tile .tile-inner::before { content: ""; position: absolute; top: 7px; left: calc(50% - 22px); width: 44px; height: 39px; background: url("duck.svg") center / contain no-repeat; }
+.tile.tile-2048 .tile-inner, .tile.tile-super .tile-inner { background: #294e38; color: #ffe17c; font-size: 28px; box-shadow: 0 0 22px #ffdc7780; }
+.pond-note { text-align: center; font-size: 11px; letter-spacing: .6px; color: var(--muted); margin: 25px 0 24px; }
+.game-explanation { margin-top: 0; background: #fffced80; border: 1px solid #bdcda273; padding: 16px 20px; border-radius: 14px; color: #4c684f; font-size: 14px; line-height: 1.7; }
+.game-explanation .important { display: block; font-size: 10px; letter-spacing: 1.7px; margin-bottom: 4px; color: var(--ink); }
+hr { border-color: #b9c89d7a; margin: 23px 0 16px; }
+.container > p:last-child { font-size: 11px; line-height: 1.7; color: var(--muted); }
+a { color: inherit; }
+.game-container .game-message { border-radius: 22px; background: #fff9dce8; backdrop-filter: blur(4px); }
+.game-container .game-message.game-won { background: #ffe796e8; color: var(--ink); }
+@media screen and (max-width: 520px) {
+  body { padding: 22px 16px; }
+  .pond-brand { font-size: 8px; letter-spacing: 1.7px; margin-bottom: 10px; gap: 5px; }
+  .pond-brand img { width: 44px; height: 38px; }
+  h1.title { font-size: 58px; letter-spacing: -4px; margin-top: 0; }
+  .heading { margin-bottom: 0; }
+  .score-container, .best-container { min-width: 35px; padding: 18px 10px 8px; font-size: 20px; border-radius: 11px; }
+  .score-container::after, .best-container::after { font-size: 8px; }
+  .scores-container { gap: 5px; }
+  .above-game { gap: 9px; margin-top: 17px; }
+  .game-intro { width: auto; font-size: 11px; line-height: 1.7; }
+  .restart-button { width: auto; margin: 0; padding: 0 12px; font-size: 11px; height: 38px; line-height: 38px; }
+  .restart-button span { margin-left: 4px; font-size: 16px; }
+  .pond-caption { font-size: 6px; letter-spacing: 1.2px; margin-top: 23px; }
+  .game-container { margin-top: 0; border-radius: 16px; }
+  .grid-cell, .tile .tile-inner { border-radius: 8px; }
+  .tile .tile-inner { font-size: 26px; line-height: 76px; }
+  .tile .tile-inner::before { width: 27px; height: 24px; left: calc(50% - 13.5px); top: 2px; }
+  .tile.tile-128 .tile-inner, .tile.tile-256 .tile-inner, .tile.tile-512 .tile-inner { font-size: 21px; }
+  .tile.tile-1024 .tile-inner, .tile.tile-2048 .tile-inner, .tile.tile-super .tile-inner { font-size: 17px; }
+  .pond-note { font-size: 8px; letter-spacing: 0; margin: 22px 0 19px; }
+  .game-explanation { font-size: 12px; padding: 13px 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .tile, .tile .tile-inner, .restart-button { animation: none !important; transition: none !important; } }
+
+/* Progression: a larger silhouette, richer gold ground, and new regalia at each level. */
+.tile .tile-inner { overflow: hidden; background: #fffbed; }
+.tile .tile-inner::before {
+  top: 50%; left: 50%;
+  width: var(--duck-size, 50%); height: var(--duck-size, 50%);
+  transform: translate(-50%, -50%);
+}
+.tile.tile-2 { --duck-size: 50%; }
+.tile.tile-2 .tile-inner { background: #fffbed; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-2 .tile-inner::before { background-image: url("duck.svg"); }
+.tile.tile-4 { --duck-size: 57%; }
+.tile.tile-4 .tile-inner { background: #f9edce; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-4 .tile-inner::before { background-image: url("duck-4.svg"); }
+.tile.tile-8 { --duck-size: 64%; }
+.tile.tile-8 .tile-inner { background: #f3dfac; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-8 .tile-inner::before { background-image: url("duck-8.svg"); }
+.tile.tile-16 { --duck-size: 70%; }
+.tile.tile-16 .tile-inner { background: #ead08a; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-16 .tile-inner::before { background-image: url("duck-16.svg"); }
+.tile.tile-32 { --duck-size: 76%; }
+.tile.tile-32 .tile-inner { background: #ddbb69; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-32 .tile-inner::before { background-image: url("duck-32.svg"); }
+.tile.tile-64 { --duck-size: 81%; }
+.tile.tile-64 .tile-inner { background: #cba24d; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-64 .tile-inner::before { background-image: url("duck-64.svg"); }
+.tile.tile-128 { --duck-size: 85%; }
+.tile.tile-128 .tile-inner { background: #b28a3c; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-128 .tile-inner::before { background-image: url("duck-128.svg"); }
+.tile.tile-256 { --duck-size: 88%; }
+.tile.tile-256 .tile-inner { background: #94702e; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-256 .tile-inner::before { background-image: url("duck-256.svg"); }
+.tile.tile-512 { --duck-size: 90%; }
+.tile.tile-512 .tile-inner { background: #765725; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-512 .tile-inner::before { background-image: url("duck-512.svg"); }
+.tile.tile-1024 { --duck-size: 92%; }
+.tile.tile-1024 .tile-inner { background: #59411e; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-1024 .tile-inner::before { background-image: url("duck-1024.svg"); }
+.tile.tile-2048 { --duck-size: 94%; }
+.tile.tile-2048 .tile-inner { background: #3b2d18; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-2048 .tile-inner::before { background-image: url("duck-2048.svg"); }
+.tile.tile-super { --duck-size: 94%; }
+.tile.tile-super .tile-inner { background: #292515; box-shadow: inset 0 0 0 1px #664d1920, 0 3px 0 #345b3b15; }
+.tile.tile-super .tile-inner::before { background-image: url("duck-super.svg"); }
+@keyframes duck-merge { 0% { transform: scale(.85); } 100% { transform: scale(1); } }
+.tile-merged .tile-inner { animation-name: duck-merge; }
+.flock-guide { margin: 0 0 20px; border: 1px solid #b9c89d; border-radius: 14px; background: #fffbed60; padding: 13px 15px; }
+.flock-guide summary { cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: .3px; }
+.flock-guide > p { margin: 10px 0; font-size: 11px; color: var(--muted); }
+.flock-stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px 7px; }
+.flock-stage { text-align: center; font-size: 9px; color: var(--ink); }
+.flock-swatch { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 9px; margin-bottom: 5px; overflow: hidden; background: var(--stage-bg); }
+.flock-swatch img { width: var(--stage-size); height: var(--stage-size); object-fit: contain; }
+@media screen and (max-width: 520px) { .flock-stages { grid-template-columns: repeat(4, 1fr); } .flock-stage { font-size: 8px; } }

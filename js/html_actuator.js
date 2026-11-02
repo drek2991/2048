@@ -62,7 +62,9 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  inner.setAttribute("role", "img");
+  var duckNames = {"2": "Duckling", "4": "Tuft", "8": "Daisy", "16": "Bow tie", "32": "Scarf", "64": "Waistcoat", "128": "Sailor", "256": "Captain", "512": "Little prince", "1024": "Pond king", "2048": "Emperor"};
+  inner.setAttribute("aria-label", (duckNames[tile.value] || "Celestial") + ", value " + tile.value);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first

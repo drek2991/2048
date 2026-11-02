@@ -2,9 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>2048</title>
+  <title>Duck Pond · 2048</title>
 
   <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link href="style/duck-theme.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
   <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
@@ -18,8 +19,9 @@
 </head>
 <body>
   <div class="container">
+    <div class="pond-brand"><img src="style/duck.svg" alt="" width="64" height="64"><span>THE LITTLE DUCK POND</span></div>
     <div class="heading">
-      <h1 class="title">2048</h1>
+      <h1 class="title">2048<span class="title-dot">.</span></h1>
       <div class="scores-container">
         <div class="score-container">0</div>
         <div class="best-container">0</div>
@@ -27,11 +29,12 @@
     </div>
 
     <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
+      <p class="game-intro">Little ducks. Big dreams.<br>Merge a <strong>bigger duck.</strong></p>
+      <button class="restart-button" type="button">New pond <span aria-hidden="true">↻</span></button>
     </div>
 
-    <div class="game-container">
+    <div class="pond-caption"><span>MAKE A SPLASH</span><span aria-hidden="true">✦</span><span>ONE MERGE AT A TIME</span></div>
+    <div class="game-container" aria-label="2048 game board">
       <div class="game-message">
         <p></p>
         <div class="lower">
@@ -72,16 +75,31 @@
       </div>
     </div>
 
+    <p class="pond-note">Small moves. Happy ducks. Endless possibilities.</p>
+    <details class="flock-guide">
+      <summary>Meet the flock · little to royal</summary>
+      <p>Follow the growing ducks and richer golden tiles. Match the same duck to discover the next.</p>
+      <div class="flock-stages">
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#fffbed;--stage-size:50%"><img src="style/duck.svg" alt="" loading="lazy"></div>Duckling</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#f9edce;--stage-size:57%"><img src="style/duck-4.svg" alt="" loading="lazy"></div>Tuft</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#f3dfac;--stage-size:64%"><img src="style/duck-8.svg" alt="" loading="lazy"></div>Daisy</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#ead08a;--stage-size:70%"><img src="style/duck-16.svg" alt="" loading="lazy"></div>Bow tie</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#ddbb69;--stage-size:76%"><img src="style/duck-32.svg" alt="" loading="lazy"></div>Scarf</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#cba24d;--stage-size:81%"><img src="style/duck-64.svg" alt="" loading="lazy"></div>Waistcoat</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#b28a3c;--stage-size:85%"><img src="style/duck-128.svg" alt="" loading="lazy"></div>Sailor</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#94702e;--stage-size:88%"><img src="style/duck-256.svg" alt="" loading="lazy"></div>Captain</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#765725;--stage-size:90%"><img src="style/duck-512.svg" alt="" loading="lazy"></div>Little prince</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#59411e;--stage-size:92%"><img src="style/duck-1024.svg" alt="" loading="lazy"></div>Pond king</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#3b2d18;--stage-size:94%"><img src="style/duck-2048.svg" alt="" loading="lazy"></div>Emperor</div>
+        <div class="flock-stage"><div class="flock-swatch" style="--stage-bg:#292515;--stage-size:94%"><img src="style/duck-super.svg" alt="" loading="lazy"></div>Celestial</div>
+      </div>
+    </details>
     <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> or <strong>swipe</strong> to move the tiles. Match two ducks of the <strong>same design and size</strong> to grow a <strong>bigger duck!</strong>
     </p>
     <hr>
     <p>
-    <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
+    Duck-themed adaptation. Original game by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
     </p>
   </div>
 
